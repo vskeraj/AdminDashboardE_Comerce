@@ -9,7 +9,7 @@ const Footer = () => {
                 <Link href="/" className='flex items-center'>
                     <Image
                         src="/logo.png"
-                        alt="TrendLama"
+                        alt="INSTYLE"
                         width={36}
                         height={36}
                     />

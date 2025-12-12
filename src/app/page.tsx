@@ -14,9 +14,9 @@ const Homepage = async ({
       <div className='relative aspect-[3/1] mb-12'>
         <Image src="/featured2.png" alt="Featured Product" fill className="object-cover" />
       </div>
-      <ProductList category={category}/>
+      <ProductList category={category} params="homepage"/>
     </div>
   )
-}
+} 
 
 export default Homepage
