@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import useCartStore from "@/stores/cartStore";
 
 
 
@@ -27,7 +28,7 @@ const steps =[
     },
 ]
 
-//TEMPORARY
+/*TEMPORARY
 const cartItems:CartItemsType = [
       {
         id: 1,
@@ -82,14 +83,17 @@ const cartItems:CartItemsType = [
         selectedSize: "l",
         selectedColor: "black",
     },
-]
+]*/
 
 
 const CartPage = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [shippingForm,setShippingForm] = useState<ShippingFormInputs | null>(null); 
+    const [shippingForm,setShippingForm] = useState<ShippingFormInputs>(); 
+
     const activeStep = parseInt(searchParams.get("step") || "1");
+
+    const {cart, removeFromCart} = useCartStore();
     return (
          <div className="flex flex-col gap-8 items-center justify-center mt-12">
             {/*TITLE*/}
@@ -116,9 +120,11 @@ const CartPage = () => {
                 {/* STEPS */}
                 <div className='w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8'>
                 {activeStep === 1 ? (
-                    cartItems.map(item=>(
+                    cart.map(item=>(
                         //SINGLE CART ITEM
-                        <div className='flex items-center justify-between' key={item.id}>
+                        <div className='flex items-center justify-between'
+                         key={item.id+item.selectedSize + item.selectedColor}
+                         >
                             {/* IMAGE AND DETAILS */}
                             <div className="flex gap-8">
                             {/* IMAGE */}
@@ -138,7 +144,7 @@ const CartPage = () => {
                                 </div>
                             </div>
                             {/* DELETE BUTTON */}
-                            <button className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
+                            <button onClick={()=>removeFromCart(item)} className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
                                 <Trash2 className="w-3 h-3"/>
                             </button>
                         </div>
@@ -158,7 +164,7 @@ const CartPage = () => {
                     <div className='flex justify-between text-sm'>
                         <p className="text-gray-500">Subtotal</p>
                         <p className="font-medium">
-                            ${cartItems.reduce(
+                            ${cart.reduce(
                             (acc, item) => acc + item.price * item.quantity,0
                             ).toFixed(2)}
                         </p>
@@ -174,7 +180,7 @@ const CartPage = () => {
                     <hr className="border-gray-200" /> 
                     <div className='flex justify-between'>
                         <p className="text-gray-800 font-semibold">Total</p>
-                        <p className="font-medium">${cartItems.reduce(
+                        <p className="font-medium">${cart.reduce(
                             (acc, item) => acc + item.price * item.quantity,0
                             ).toFixed(2)}</p>
                     </div>
