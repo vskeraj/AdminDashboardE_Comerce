@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { PaymentFormInputs, paymentFormSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ShoppingCart } from "lucide-react";
+import { ArrowRight, ShoppingCart } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
@@ -27,7 +27,7 @@ const PaymentForm = () => {
                     placeholder="John Doe"
                     {...register("cardHolder")}
                 />
-                {errors.cardHolder && <p className="text-xs text-red-500">{errors.cardHolder.message}</p>}
+                {errors.cardHolder && (<p className="text-xs text-red-500">{errors.cardHolder.message}</p>)}
             </div>
 
             <div className='flex flex-col gap-1'>

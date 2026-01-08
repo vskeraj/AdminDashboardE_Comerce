@@ -2,7 +2,8 @@ import React from 'react'
 import Link from "next/link";
 import Image from "next/image";
 import SearchBar from './SearchBar';
-import { Home, Bell, ShoppingCart, ShoppingCartIcon } from 'lucide-react'
+import { Home, Bell, ShoppingCart } from 'lucide-react'
+import ShoppingCartIcon from "./ShoppingCartIcon";
 
 
 const Navbar = () => {
