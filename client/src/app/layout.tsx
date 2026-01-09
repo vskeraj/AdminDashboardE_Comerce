@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Insyle",
+  title: "Instyle",
   description: "An e-comerce app",
 };
 export default function RootLayout({
