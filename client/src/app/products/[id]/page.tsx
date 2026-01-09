@@ -10,7 +10,7 @@ const product: ProductType = {
     "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
   description:
     "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-  price: 59.9,
+  price: 39.9,
   sizes: ["xs", "s", "m", "l", "xl"],
   colors: ["gray", "purple", "green"],
   images: {
